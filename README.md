@@ -1,4 +1,4 @@
-# [A*](a*.lewie.me)
+# [A*](https://astar.lewie.me/)
 A simple A* visualizer made in Bootstrap for a school project. 
 
 ## Attributions
