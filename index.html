@@ -1,276 +1,905 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-    <meta content="An A* visualizer made in Bootstrap. " name="description">
-    <meta content="Lewie Hill" name="author">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      name="viewport"
+    />
+    <meta content="An A* visualizer made in Bootstrap. " name="description" />
+    <meta content="Lewie Hill" name="author" />
 
     <title>A*</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  </head>
 
-
-</head>
-
-<body>
-
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
+  <body>
+    <!--  JS  -->
+    <script type="text/javascript" src="Input.ts"></script>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
         <a class="navbar-brand" href="#">A* Visualiser</a>
-        <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler"
-                data-target="#navbarResponsive" data-toggle="collapse" type="button">
-            <span class="navbar-toggler-icon"></span>
+        <button
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          class="navbar-toggler"
+          data-target="#navbarResponsive"
+          data-toggle="collapse"
+          type="button"
+        >
+          <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/CSCoursework/A-Star">View Source</a>
-                    <i class="bi bi-arrow-left-short text-white"></i>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://lewie.me/">Back to lewie.me</a>
-                </li>
-            </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/CSCoursework/A-Star"
+                >View Source</a
+              >
+              <i class="bi bi-arrow-left-short text-white"></i>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://lewie.me/">Back to lewie.me</a>
+            </li>
+          </ul>
         </div>
-    </div>
-</nav>
+      </div>
+    </nav>
 
-<!-- Page Content -->
-<main class="container-fluid">
-    <div class="row w-100 align-items-center-center">
+    <!-- Page Content -->
+    <main class="container-fluid">
+      <div class="row w-100 align-items-center-center">
         <div class="col" style="margin: 5vh 30vw; display: table; width: 40vw">
-            <div class="row" style="width: 40vw">
-                <btn class="btn btn-dark" id="A1"
-                     onclick="click(this, 'A1')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="A2"
-                     onclick="click(this, 'A2')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="A3"
-                     onclick="click(this, 'A3')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="A4"
-                     onclick="click(this, 'A4')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="A5"
-                     onclick="click(this, 'A5')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="A6"
-                     onclick="click(this, 'A6')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="A7"
-                     onclick="click(this, 'A7')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="A8"
-                     onclick="click(this, 'A8')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-
+          <div class="row" style="width: 40vw">
+            <btn
+              class="btn btn-dark"
+              id="A1"
+              onclick="click(this, 'A1')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="A2"
+              onclick="click(this, 'A2')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="A3"
+              onclick="click(this, 'A3')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="A4"
+              onclick="click(this, 'A4')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="A5"
+              onclick="click(this, 'A5')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="A6"
+              onclick="click(this, 'A6')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="A7"
+              onclick="click(this, 'A7')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="A8"
+              onclick="click(this, 'A8')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+          </div>
+          <div class="row" style="width: 40vw">
+            <btn
+              class="btn btn-dark"
+              id="B1"
+              onclick="click(this, 'B1')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="B2"
+              onclick="click(this, 'B2')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="B3"
+              onclick="click(this, 'B3')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="B4"
+              onclick="click(this, 'B4')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="B5"
+              onclick="click(this, 'B5')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="B6"
+              onclick="click(this, 'B6')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="B7"
+              onclick="click(this, 'B7')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="B8"
+              onclick="click(this, 'B8')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+          </div>
+          <div class="row" style="width: 40vw">
+            <btn
+              class="btn btn-dark"
+              id="C1"
+              onclick="click(this, 'C1')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="C2"
+              onclick="click(this, 'C2')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="C3"
+              onclick="click(this, 'C3')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="C4"
+              onclick="click(this, 'C4')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="C5"
+              onclick="click(this, 'C5')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="C6"
+              onclick="click(this, 'C6')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="C7"
+              onclick="click(this, 'C7')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="C8"
+              onclick="click(this, 'C8')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+          </div>
+          <div class="row" style="width: 40vw">
+            <btn
+              class="btn btn-dark"
+              id="D1"
+              onclick="click(this, 'D1')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="D2"
+              onclick="click(this, 'D2')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="D3"
+              onclick="click(this, 'D3')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="D4"
+              onclick="click(this, 'D4')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="D5"
+              onclick="click(this, 'D5')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="D6"
+              onclick="click(this, 'D6')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="D7"
+              onclick="click(this, 'D7')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="D8"
+              onclick="click(this, 'D8')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+          </div>
+          <div class="row" style="width: 40vw">
+            <btn
+              class="btn btn-dark"
+              id="E1"
+              onclick="click(this, 'E1')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="E2"
+              onclick="click(this, 'E2')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="E3"
+              onclick="click(this, 'E3')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="E4"
+              onclick="click(this, 'E4')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="E5"
+              onclick="click(this, 'E5')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="E6"
+              onclick="click(this, 'E6')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="E7'"
+              onclick="click(this, 'E7')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="E8"
+              onclick="click(this, 'E8')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+          </div>
+          <div class="row" style="width: 40vw">
+            <btn
+              class="btn btn-dark"
+              id="F1"
+              onclick="click(this, 'F1')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="F2"
+              onclick="click(this, 'F2')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="F3"
+              onclick="click(this, 'F3')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="F4"
+              onclick="click(this, 'F4')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="F5"
+              onclick="click(this, 'F5')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="F6"
+              onclick="click(this, 'F6')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="F7"
+              onclick="click(this, 'F7')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="F8"
+              onclick="click(this, 'F8')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+          </div>
+          <div class="row" style="width: 40vw">
+            <btn
+              class="btn btn-dark"
+              id="G1"
+              onclick="click(this, 'G1')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="G2"
+              onclick="click(this, 'G2')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="G3"
+              onclick="click(this, 'G3')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="G4"
+              onclick="click(this, 'G4')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="G5"
+              onclick="click(this, 'G5')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="G6"
+              onclick="click(this, 'G6')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="G7"
+              onclick="click(this, 'G7')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="G8"
+              onclick="click(this, 'G8')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+          </div>
+          <div class="row" style="width: 40vw">
+            <btn
+              class="btn btn-dark"
+              id="H1"
+              onclick="click(this, 'H1')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="H2"
+              onclick="click(this, 'H2')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="H3"
+              onclick="click(this, 'H3')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="H4"
+              onclick="click(this, 'H4')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="H5"
+              onclick="click(this, 'H5')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="H6"
+              onclick="click(this, 'H6')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="H7"
+              onclick="click(this, 'H7')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+            <btn
+              class="btn btn-dark"
+              id="H8"
+              onclick="click(this, 'H8')"
+              style="
+                width: 5vw;
+                height: 5vw;
+                border-radius: 0;
+                margin: 0;
+                border-color: #292b2c;
+              "
+            ></btn>
+          </div>
+          <div class="row" style="width: 40vw">
+            <div
+              class="btn-toolbar mb-3"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="start"
+                      >Start X and Y</span
+                    >
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="startX"
+                    onchange="StartXChange()"
+                  />
+                  <label for="startX" class="sr-only sr-only-focusable"
+                    >StartX</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="startY"
+                    onchange="StartYChange()"
+                  />
+                  <label for="startY" class="sr-only sr-only-focusable"
+                    >StartY</label
+                  >
+                </div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="end">End X and Y</span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="endX"
+                    onchange="EndXChange()"
+                  />
+                  <label for="endX" class="sr-only sr-only-focusable"
+                    >EndX</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="endY"
+                    onchange="EndYChange()"
+                  />
+                  <label for="endY" class="sr-only sr-only-focusable"
+                    >EndX</label
+                  >
+                </div>
+              </div>
             </div>
-            <div class="row" style="width: 40vw">
-                <btn class="btn btn-dark" id="B1"
-                     onclick="click(this, 'B1')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="B2"
-                     onclick="click(this, 'B2')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="B3"
-                     onclick="click(this, 'B3')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="B4"
-                     onclick="click(this, 'B4')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="B5"
-                     onclick="click(this, 'B5')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="B6"
-                     onclick="click(this, 'B6')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="B7"
-                     onclick="click(this, 'B7')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="B8"
-                     onclick="click(this, 'B8')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-
-            </div>
-            <div class="row" style="width: 40vw">
-                <btn class="btn btn-dark" id="C1"
-                     onclick="click(this, 'C1')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="C2"
-                     onclick="click(this, 'C2')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="C3"
-                     onclick="click(this, 'C3')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="C4"
-                     onclick="click(this, 'C4')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="C5"
-                     onclick="click(this, 'C5')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="C6"
-                     onclick="click(this, 'C6')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="C7"
-                     onclick="click(this, 'C7')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="C8"
-                     onclick="click(this, 'C8')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-
-
-            </div>
-            <div class="row" style="width: 40vw">
-                <btn class="btn btn-dark" id="D1"
-                     onclick="click(this, 'D1')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="D2"
-                     onclick="click(this, 'D2')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="D3"
-                     onclick="click(this, 'D3')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="D4"
-                     onclick="click(this, 'D4')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="D5"
-                     onclick="click(this, 'D5')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="D6"
-                     onclick="click(this, 'D6')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="D7"
-                     onclick="click(this, 'D7')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="D8"
-                     onclick="click(this, 'D8')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-
-            </div>
-            <div class="row" style="width: 40vw">
-                <btn class="btn btn-dark" id="E1"
-                     onclick="click(this, 'E1')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="E2"
-                     onclick="click(this, 'E2')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="E3"
-                     onclick="click(this, 'E3')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="E4"
-                     onclick="click(this, 'E4')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="E5"
-                     onclick="click(this, 'E5')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="E6"
-                     onclick="click(this, 'E6')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="E7'"
-                     onclick="click(this, 'E7')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="E8"
-                     onclick="click(this, 'E8')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-
-            </div>
-            <div class="row" style="width: 40vw">
-                <btn class="btn btn-dark" id="F1"
-                     onclick="click(this, 'F1')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="F2"
-                     onclick="click(this, 'F2')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="F3"
-                     onclick="click(this, 'F3')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="F4"
-                     onclick="click(this, 'F4')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="F5"
-                     onclick="click(this, 'F5')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="F6"
-                     onclick="click(this, 'F6')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="F7"
-                     onclick="click(this, 'F7')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="F8"
-                     onclick="click(this, 'F8')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-
-            </div>
-            <div class="row" style="width: 40vw">
-                <btn class="btn btn-dark" id="G1"
-                     onclick="click(this, 'G1')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="G2"
-                     onclick="click(this, 'G2')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="G3"
-                     onclick="click(this, 'G3')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="G4"
-                     onclick="click(this, 'G4')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="G5"
-                     onclick="click(this, 'G5')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="G6"
-                     onclick="click(this, 'G6')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="G7"
-                     onclick="click(this, 'G7')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="G8"
-                     onclick="click(this, 'G8')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-
-            </div>
-            <div class="row" style="width: 40vw">
-                <btn class="btn btn-dark" id="H1"
-                     onclick="click(this, 'H1')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="H2"
-                     onclick="click(this, 'H2')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="H3"
-                     onclick="click(this, 'H3')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="H4"
-                     onclick="click(this, 'H4')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="H5"
-                     onclick="click(this, 'H5')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="H6"
-                     onclick="click(this, 'H6')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="H7"
-                     onclick="click(this, 'H7')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-                <btn class="btn btn-dark" id="H8"
-                     onclick="click(this, 'H8')"
-                     style="width: 5vw; height: 5vw; border-radius: 0; margin: 0; border-color: #292b2c;"></btn>
-
-            </div>
-
+          </div>
         </div>
-    </div>
-</main>
+      </div>
+    </main>
 
-
-<script src="vendor/jquery/jquery.slim.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
+    <script src="vendor/jquery/jquery.slim.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
