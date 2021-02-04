@@ -54,11 +54,11 @@ function aStar(grid: boolean[][], start: aStarNode, end: aStarNode) {
 
   if (current.x == end.x && current.y == end.y) {
     let path: aStarNode[] = [];
-    let current_astarNode = current;
+    let current_aStarNode = current;
 
-    while (current_astarNode != null) {
+    while (current_aStarNode != null) {
       path.push(current);
-      current_astarNode = current_astarNode.parent;
+      current_aStarNode = current_aStarNode.parent;
     }
     return path.reverse();
   }
@@ -75,25 +75,25 @@ function aStar(grid: boolean[][], start: aStarNode, end: aStarNode) {
     [1, 1],
   ]) {
     //set child x and y
-    let astarNodeX: number = current.x + newPos[0];
-    let astarNodeY: number = current.y + newPos[1];
+    let aStarNodeX: number = current.x + newPos[0];
+    let aStarNodeY: number = current.y + newPos[1];
 
     //if not in range
     if (
-      astarNodeX > grid.length - 1 ||
-      astarNodeX < 0 ||
-      grid.length - (1)[grid.length - 1] - 1 < astarNodeY ||
-      astarNodeY < 0
+      aStarNodeX > grid.length - 1 ||
+      aStarNodeX < 0 ||
+      grid.length - (1)[grid.length - 1] - 1 < aStarNodeY ||
+      aStarNodeY < 0
     ) {
       continue;
     }
 
     //if wall
-    if (grid[astarNodeX][astarNodeY]) {
+    if (grid[aStarNodeX][aStarNodeY]) {
       continue;
     }
 
-    children.push(new aStarNode(astarNodeX, astarNodeY));
+    children.push(new aStarNode(aStarNodeX, aStarNodeY));
   }
   allChildren: for (let child of children) {
     for (let closedChild of closed) {

@@ -1,80 +1,92 @@
-function arrayRemove(arr, value) {
-    return arr.filter(function (ele) {
-        return ele != value;
-    });
-}
-class Node {
+class aStarNode {
     constructor(x, y) {
         this.x = x;
         this.y = y;
     }
-    successor(parent, open, closed, grid, end) {
-        let parentX = parent.x;
-        let parentY = parent.y;
-        let xy = [
-            [parentX--, parentY--],
-            [parentX--, parentY],
-            [parentX--, parentY++],
-            [parentX, parentY--],
-            [parentX, parentY++],
-            [parentX++, parentY--],
-            [parentX++, parentY],
-            [parentX++, parentY++],
-        ];
-        for (let i in xy) {
-            let successor = new Node(xy[i][0], xy[i][1]);
-            if (closed.includes(successor)) {
-            }
-            // if (successor.x == end.x && successor.y == end.y) {
-            //     //TODO
-            //     //  stop search
-            //     //  successor.g = q.g + distance between
-            //     //  successor and q
-            //     //  successor.h = distance from goal to
-            //     //  successor
-            // }
-            // for (let item of open) {
-            //     if (successor.x == item.x && successor.y == item.y && item.f < successor.f) {
-            //         temp = true
-            //         continue
-            //     }
-            // }
-            // for (let item of closed) {
-            //     if (successor.x == item.x && successor.y == item.y && item.f < successor.f) {
-            //         temp = true
-            //         continue
-            //     }
-            // }
-            // if (temp = false){
-            //     open.push(new Node(successor.x, successor.y));
-            // }
-        }
-    }
 }
-function astar(grid, start, end) {
-    let open = [start];
-    start.f = 0;
+let start = new aStarNode(0, 0);
+start.f = start.g = start.h = 0;
+let end = new aStarNode(7, 7);
+end.f = end.g = end.h = 0;
+let grid = [
+    [false, false, false, true, false, false, false, false],
+    [false, false, false, false, true, false, false, false],
+    [false, false, false, false, true, false, false, false],
+    [false, false, false, false, true, false, false, false],
+    [false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false],
+];
+function aStar(grid, start, end) {
+    let open = [];
     let closed = [];
-    while (open.length != 0) {
-        let q;
-        for (let i in open) {
-            if (open[i].f < q.f) {
-                q = open[i];
+    open.push(start);
+    let current;
+    let currentIndex;
+    while (open.length > 0) {
+        current = open[0];
+        currentIndex = 0;
+        open.forEach((item, index) => {
+            if (open[index].f < current.f) {
+                current = item;
+                currentIndex = index;
+            }
+        });
+    }
+    open.splice(currentIndex, 1);
+    closed.push(current);
+    if (current.x == end.x && current.y == end.y) {
+        let path = [];
+        let current_aStarNode = current;
+        while (current_aStarNode != null) {
+            path.push(current);
+            current_aStarNode = current_aStarNode.parent;
+        }
+        return path.reverse();
+    }
+    let children = [];
+    for (let newPos of [
+        [0, -1],
+        [0, 1],
+        [-1, 0],
+        [1, 0],
+        [-1, -1],
+        [-1, 1],
+        [1, -1],
+        [1, 1],
+    ]) {
+        //set child x and y
+        let aStarNodeX = current.x + newPos[0];
+        let aStarNodeY = current.y + newPos[1];
+        //if not in range
+        if (aStarNodeX > grid.length - 1 ||
+            aStarNodeX < 0 ||
+            grid.length - (1)[grid.length - 1] - 1 < aStarNodeY ||
+            aStarNodeY < 0) {
+            continue;
+        }
+        //if wall
+        if (grid[aStarNodeX][aStarNodeY]) {
+            continue;
+        }
+        children.push(new aStarNode(aStarNodeX, aStarNodeY));
+    }
+    allChildren: for (let child of children) {
+        for (let closedChild of closed) {
+            if (child == closedChild) {
+                continue allChildren;
             }
         }
-        closed.push(q);
-        arrayRemove(open, q);
-        if (q.x == end.x && q.y == end.y) {
-            let path;
-            let done;
-            while (!done) {
-                path.push(q);
-                q = q.parent;
+        child.g = current.g++;
+        child.h = Math.pow((child.x - end.x), 2) + Math.pow((child.y - end.y), 2);
+        child.f = child.g + child.h;
+        for (let openChild of open) {
+            if (child == openChild) {
+                continue allChildren;
             }
         }
-        else {
-            q.successor(q, open, closed, grid, end);
-        }
+        open.push(child);
     }
 }
 //# sourceMappingURL=astar.js.map

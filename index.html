@@ -16,8 +16,6 @@
   </head>
 
   <body>
-    <!--  JS  -->
-    <script type="text/javascript" src="Input.ts"></script>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
       <div class="container">
@@ -850,21 +848,11 @@
                       >Start X and Y</span
                     >
                   </div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="startX"
-                    onchange="StartXChange()"
-                  />
+                  <input type="text" class="form-control coordinate" id="startX" />
                   <label for="startX" class="sr-only sr-only-focusable"
                     >StartX</label
                   >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="startY"
-                    onchange="StartYChange()"
-                  />
+                  <input type="text" class="form-control coordinate" id="startY" />
                   <label for="startY" class="sr-only sr-only-focusable"
                     >StartY</label
                   >
@@ -873,21 +861,11 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="end">End X and Y</span>
                   </div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="endX"
-                    onchange="EndXChange()"
-                  />
+                  <input type="text" class="form-control coordinate" id="endX" />
                   <label for="endX" class="sr-only sr-only-focusable"
                     >EndX</label
                   >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="endY"
-                    onchange="EndYChange()"
-                  />
+                  <input type="text" class="form-control coordinate" id="endY" />
                   <label for="endY" class="sr-only sr-only-focusable"
                     >EndX</label
                   >
@@ -898,7 +876,10 @@
         </div>
       </div>
     </main>
+    <!--  JS  -->
+    <script type="text/javascript" src="Input.js"></script>
 
+    <!--  Libs  -->
     <script src="vendor/jquery/jquery.slim.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   </body>
